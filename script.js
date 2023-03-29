@@ -16,3 +16,10 @@ function onReady(callback) {
   onReady(function() {
     setVisible('.sectionLoading', false);
   });
+
+// HEIGHT
+
+window.onresize = function() {
+  document.body.height = window.innerHeight;
+}
+window.onresize();
