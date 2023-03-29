@@ -242,7 +242,7 @@ li {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 70vw;
+    width: 75vw;
 }
 
 .sectionMenuCredits li {
@@ -301,7 +301,7 @@ li {
     }
 
     .about {
-        font-size: 0.8em;
+        font-size: 0.7em;
     }
 }
 
