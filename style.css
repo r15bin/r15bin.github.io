@@ -51,6 +51,7 @@
 
 html, body {
     height: 100%;
+    height: -webkit-fill-available;
     width: 100%;
     background-color: #000;
     background-image: url("misc/bg.jpg");
