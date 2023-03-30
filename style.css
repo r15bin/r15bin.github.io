@@ -129,8 +129,8 @@ ul {
 }
 
 li {
-    padding-top: 2vh;
-    padding-bottom: 2vh;
+    padding-top: 1.5vh;
+    padding-bottom: 1.5vh;
     font-size: 3em;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
