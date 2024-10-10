@@ -1,0 +1,132 @@
+/* general */
+
+:root {
+    --white: #e5e5e5;
+    --black: #252525;
+    --trail: red;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    font-family: 'Switzer', sans-serif;
+    background-color: var(--white);
+    color: var(--black);
+}
+
+*::-webkit-scrollbar {
+    display: none;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    animation: startup 1.5s;
+}
+
+@keyframes startup {
+    0% {opacity: 0}
+
+    100% {opacity: 1}
+}
+
+a {
+    text-decoration: none;
+}
+
+/* header */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em 2em;
+}
+
+#rg {
+    font-size: 1em;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+#menu {
+    display: flex;
+    justify-content: space-between;
+    width: 20%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* classes */
+
+.copysafe {
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    user-select:none;
+}
+
+/* mouse trail */
+
+#trail {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background: none;
+    pointer-events: none;
+}
+
+#trail path {
+    fill: none;
+    stroke: var(--trail);
+    opacity: 0.5;
+    stroke-width: 3px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* resposiveness */
+
+/* Extra small devices (phones, 600px and down) */
+
+@media only screen and (max-width: 399px) {
+
+}
+
+@media only screen and (max-width: 599px) {
+
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) and (max-width: 767px) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    
+}
