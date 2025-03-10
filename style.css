@@ -1,7 +1,7 @@
 /* general */
 
 :root {
-    --white: #e5e5e5;
+    --white: #fff;
     --black: #252525;
     --trail: red;
 }
@@ -16,7 +16,6 @@
     background-color: var(--white);
     color: var(--black);
     font-family: "Inter", sans-serif;
-    cursor: wait;
 }
 
 *::-webkit-scrollbar {
@@ -138,22 +137,6 @@ a {
     cursor: default;
 }
 
-/* copyright */
-
-#copyright {
-    margin-top: 1em;
-    background: none;
-    cursor: wait;
-}
-
-#copyright p {
-    font-size: 0.5em;
-    background: none;
-    cursor: wait;
-    opacity: 0.2;
-}
-
-
 /* mouse trail */
 
 #trail {
@@ -167,41 +150,11 @@ a {
 
 #trail path {
     fill: none;
-    stroke: var(--black);
+    stroke: var(--trail);
     opacity: 0.5;
     stroke-width: 3px;
     stroke-linecap: round;
     stroke-linejoin: round;
-}
-
-/* gradient */
-.css-selector {
-    background: linear-gradient(214deg, #ffffff, #cecece, #9b9b9b);
-    background-size: 600% 600%;
-    -webkit-animation: AnimationName 16s ease infinite;
-    -moz-animation: AnimationName 16s ease infinite;
-    -o-animation: AnimationName 16s ease infinite;
-    animation: AnimationName 16s ease infinite;
-}
-@-webkit-keyframes AnimationName {
-    0%{background-position:0% 90%}
-    50%{background-position:100% 11%}
-    100%{background-position:0% 90%}
-}
-@-moz-keyframes AnimationName {
-    0%{background-position:0% 90%}
-    50%{background-position:100% 11%}
-    100%{background-position:0% 90%}
-}
-@-o-keyframes AnimationName {
-    0%{background-position:0% 90%}
-    50%{background-position:100% 11%}
-    100%{background-position:0% 90%}
-}
-@keyframes AnimationName {
-    0%{background-position:0% 90%}
-    50%{background-position:100% 11%}
-    100%{background-position:0% 90%}
 }
 
 /* resposiveness */
