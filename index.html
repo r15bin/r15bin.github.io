@@ -12,7 +12,9 @@
     <link rel="manifest" href="/site.webmanifest">
 
     <!-- fonts -->
-    <link href="https://fonts.cdnfonts.com/css/switzer" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
                 
     <title>Robin Geckler (@r15bin)</title>
 </head>
@@ -21,15 +23,21 @@
     <!-- welcome -->
     <section id="r15bin">
         <div id="robingeckler" class="section">
-            <p class="copysafe">Robin Geckler</p>
+            <div class="headings">
+                <p class="copysafe">Robin Geckler</p>
+            </div>
             <div class="items">
-                <p class="copysafe">Brand Consistency</p>
-                <p class="copysafe">Europe</p>                                        
+                <p class="copysafe">User Experience</p>
+                <p class="copysafe">Creative Strategy</p>                                     
+                <p class="copysafe">Brand Consistency</p>                                     
             </div>
         </div>
 
         <div id="current" class="section">
-            <p class="copysafe">Current</p>
+            
+            <div class="headings">
+                <p class="copysafe">Current</p>
+            </div>
             <div class="items">
                 <p class="copysafe">Marketing Management (M.A.)</p>
                 <p class="copysafe">Working Student, <a href="https://www.nafa.de" target="_blank">NAFA</a></p>
@@ -37,16 +45,20 @@
         </div>
 
         <div id="past" class="section">
-            <p class="copysafe">Past</p>
+            <div class="headings">
+                <p class="copysafe">Past</p>
+            </div>
             <div class="items">
                 <p class="copysafe">Business Law (LL.B.)</p>
             </div>
         </div>
 
         <div id="contact" class="section">
-            <p class="copysafe">Contact</p>
+            <div class="headings">
+                <p class="copysafe">Contact</p>
+            </div>
             <div class="items">
-                <a href="mailto:15@r15b.in" target="_blank" class="copysafelink">Email</a>
+                <p id="email" class="copysafe" onclick="copyEmail()">r@robingeckler.com</p>
                 <a href="https://www.instagram.com/r15bin" target="_blank" class="copysafelink">Instagram</a>
                 <a href="https://www.x.com/r15bin" target="_blank" class="copysafelink">X</a>
             </div>
