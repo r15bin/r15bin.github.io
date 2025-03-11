@@ -79,3 +79,13 @@ const observer = new IntersectionObserver((entries) => {
 
 const hiddenElements = document.querySelectorAll('.hidden');
 hiddenElements.forEach((el) => observer.observe(el));
+
+// copy text
+
+function copyEmail() {
+  var copyText = document.getElementById("email");
+
+  navigator.clipboard.writeText(copyText.innerText);
+
+  alert("Copied " + copyText.innerText);
+}
