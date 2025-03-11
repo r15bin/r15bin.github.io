@@ -88,6 +88,13 @@ p {
     cursor: default;
 }
 
+.copysafelink {
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    user-select:none;
+    cursor: ne-resize;
+}
+
 /* mouse trail */
 
 #trail {
