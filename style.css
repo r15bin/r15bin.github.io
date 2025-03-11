@@ -32,7 +32,8 @@ html, body {
 body {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
+    padding-top: 5vh;
     align-items: center;
 }
 
@@ -44,13 +45,13 @@ body {
 
 a {
     text-decoration: none;
-    font-size: 2vw;
+    font-size: 1.5vw;
     cursor: ne-resize;
 }
 
 p {
     text-align: start;
-    font-size: 2vw;
+    font-size: 1.5vw;
 }
 
 #r15bin {
@@ -65,7 +66,7 @@ p {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 100%;
+    width: 70%;
     height: fit-content;
     margin-bottom: 10vh;
     overflow: hidden;
@@ -87,6 +88,10 @@ p {
     white-space: nowrap;
     width: 60%;
     height: fit-content;
+}
+
+#email {
+    cursor: pointer;
 }
 
 /* misc */
@@ -136,7 +141,11 @@ p {
     }
 
     a, p {
-        font-size: 3vw;
+        font-size: 2vw;
+    }
+
+    .section {
+        width: 90%;
     }
 }
 
@@ -148,7 +157,11 @@ p {
     }
 
     a, p {
-        font-size: 3vw;
+        font-size: 2vw;
+    }
+
+    .section {
+        width: 90%;
     }
 }
 
@@ -160,7 +173,11 @@ p {
     }
 
     a, p {
-        font-size: 3vw;
+        font-size: 2vw;
+    }
+
+    .section {
+        width: 80%;
     }
 }
 
@@ -168,5 +185,9 @@ p {
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     #r15bin {
         width: 50%;
+    }
+
+    .section {
+        width: 80%;
     }
 }
