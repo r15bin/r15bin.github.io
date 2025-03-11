@@ -32,8 +32,7 @@ html, body {
 body {
     display: flex;
     flex-direction: column;
-    justify-content: top;
-    padding-top: 15vh;
+    justify-content: center;
     align-items: center;
 }
 
