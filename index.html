@@ -223,13 +223,17 @@
             });
             
             // Touch events for mobile interaction
+            let touchStartY = 0;
+            let touchStartX = 0;
+            
             carouselContainer.addEventListener('touchstart', (e) => {
-                isDragging = true;
+                touchStartY = e.touches[0].clientY;
+                touchStartX = e.touches[0].clientX;
                 previousMousePosition = { 
                     x: e.touches[0].clientX, 
                     y: e.touches[0].clientY 
                 };
-                e.preventDefault();
+                // Don't prevent default here to allow both types of scrolling
             });
             
             document.addEventListener('touchend', () => {
@@ -237,7 +241,18 @@
             });
             
             document.addEventListener('touchmove', (e) => {
-                if (isDragging) {
+                const touchY = e.touches[0].clientY;
+                const touchX = e.touches[0].clientX;
+                const deltaY = touchY - touchStartY;
+                const deltaX = touchX - touchStartX;
+                
+                // Determine if the swipe is more horizontal than vertical
+                if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                    // Horizontal swipe - control the carousel
+                    if (!isDragging) {
+                        isDragging = true;
+                    }
+                    
                     const deltaMove = { 
                         x: e.touches[0].clientX - previousMousePosition.x,
                         y: e.touches[0].clientY - previousMousePosition.y 
@@ -248,8 +263,9 @@
                         x: e.touches[0].clientX, 
                         y: e.touches[0].clientY 
                     };
-                    e.preventDefault();
+                    e.preventDefault(); // Only prevent default for horizontal swipes
                 }
+                // For vertical swipes, do nothing and let the page scroll naturally
             });
             
             // Animation loop
