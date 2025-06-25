@@ -61,10 +61,6 @@ p {
     padding-top: 5vh;
 }
 
-#samples {
-    height: 90vh;
-}
-
 .section {
     display: flex;
     flex-direction: row;
