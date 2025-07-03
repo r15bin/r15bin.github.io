@@ -71,5 +71,5 @@ function copyEmail() {
 
   navigator.clipboard.writeText(copyText.innerText);
 
-  alert("Copied");
+  alert("I'm looking forward to hearing from you!");
 }
