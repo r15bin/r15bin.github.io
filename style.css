@@ -611,7 +611,7 @@ input[type='range']::-webkit-slider-thumb {
     }
 
     .project {
-        gap: 1.5vw;
+        width: 90vw;
     }
 
     .image {
