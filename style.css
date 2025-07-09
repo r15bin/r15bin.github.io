@@ -593,8 +593,21 @@ input[type='range']::-webkit-slider-thumb {
 
 @media only screen and (max-width: 599px) {
 
-    #r15bin {
-        width: 80%;
+    #cv {
+        width: 90%;
+    }
+
+    #cv p, #cv a {
+        font-size: 3vw;
+    }
+
+    .section {
+        gap: 2vw;
+
+    }
+
+    .headings {
+        width: 10%;
     }
 
     a, p {
@@ -614,8 +627,8 @@ input[type='range']::-webkit-slider-thumb {
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) and (max-width: 767px) {
 
-    #r15bin {
-        width: 70%;
+    #cv {
+        width: 80%;
     }
 
     a, p {
@@ -630,13 +643,17 @@ input[type='range']::-webkit-slider-thumb {
     .image {
         width: 80vw;
     }
+
+    #cv p, #cv a {
+        font-size: 2.5vw;
+    }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) and (max-width: 991px) {
 
-    #r15bin {
-        width: 70%;
+    #cv {
+        width: 80%;
     }
 
     a, p {
@@ -649,6 +666,10 @@ input[type='range']::-webkit-slider-thumb {
 
     .image {
         width: 70vw;
+    }
+
+    #cv p, #cv a {
+        font-size: 2vw;
     }
 }
 
