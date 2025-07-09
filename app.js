@@ -1,9 +1,3 @@
-if (window.location.hash) {
-  // Scroll to top before removing hash to prevent jump
-  window.scrollTo(0, 0);
-  history.replaceState(null, null, window.location.pathname + window.location.search);
-}
-
 // mouse trail
 
 const svg = document.querySelector('#trail')
