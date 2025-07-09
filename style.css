@@ -606,21 +606,16 @@ input[type='range']::-webkit-slider-thumb {
         font-size: 3vw;
     }
 
-    .section {
-        gap: 2vw;
-
-    }
-
-    .headings {
-        width: 15%;
-    }
-
     a, p {
         font-size: 3vw;
     }
 
+    .section {
+        width: 100%;
+    }
+
     .project {
-        width: 90vw;
+        gap: 1.5vw;
     }
 
     .image {
