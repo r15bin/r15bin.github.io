@@ -134,6 +134,7 @@ a {
     width: 20vw;
     opacity: 0.5;
     overflow: visible;
+    background: none;
 }
 
 
@@ -146,6 +147,7 @@ a {
     width: 30vw;
     overflow: visible;
     height: fit-content;
+    background: none;
 }
 
 #email {
