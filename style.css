@@ -610,10 +610,6 @@ input[type='range']::-webkit-slider-thumb {
         font-size: 3vw;
     }
 
-    .section {
-        width: 100%;
-    }
-
     .project {
         gap: 1.5vw;
     }
