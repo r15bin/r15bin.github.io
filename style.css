@@ -49,62 +49,15 @@ a {
     100% {opacity: 1}
 }
 
+/* cv  */
 
-#welcome {
-    height: 80vh;
-    width: 100%;
-    display: flex;
-    background: none;
-    flex-direction: column;
-    justify-content: start;
-    padding-top: 15vh;
-    align-items: center;
-}
-
-#welcome a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100px;
-    height: 40px;
-    background-color: rgba(255, 255, 255, 0.222);
-    border-radius: 15px;
-    margin-bottom: 1.5rem;
-    cursor: s-resize;
-    box-shadow: 0 0 15px 0 rgba(255, 255, 255, 0.5);
-    z-index: 1;
-    position: relative;
-    font-size: 1rem;
-    margin: 3rem;
-    backdrop-filter: blur(5px);
-    transition: 0.15s ease-in-out;
-    color: var(--black);
-}
-
-#welcome a:hover {
-    background-color: rgba(255, 255, 255, 0.333);
-    box-shadow: 0 0 30px 0 rgba(255, 255, 255, 0.5);
-}
-
-#welcome video {
-   height: 75vh;
-   object-fit: cover;
-   position: absolute;
-   left: 5%;
-   top: 5vh;
-   width: 90%;
-   border-radius: 30px;
-   box-shadow: 0 0 100px 0 rgba(0, 0, 0, 0.5);
-    pointer-events: none;
-}
 
 #cv {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: end;
+    justify-content: start;
     height: 100vh;
-    padding: 10vh 0 0 0;
+    padding-top: 10vh;
 }
 
 #cv p, #cv a {
@@ -119,10 +72,10 @@ a {
 .section {
     display: flex;
     flex-direction: row;
-    width: 90%;
-    margin-bottom: 10vh;
+    justify-content: center;
+    width: 100%;
+    padding-bottom: 10vh;
     overflow: hidden;
-    gap: 5vw;
 }
 
 .headings {
@@ -420,6 +373,7 @@ input[type='range']::-webkit-slider-thumb {
     background-position: center;
     background-repeat: no-repeat;
     margin-bottom: 5vh;
+    pointer-events: none;
 }
 
 #ekko1 {
