@@ -56,8 +56,8 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: start;
-    height: 100vh;
-    padding-top: 10vh;
+    height: 85vh;
+    padding-top: 5vh;
 }
 
 #cv p, #cv a {
