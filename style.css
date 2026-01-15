@@ -1,0 +1,261 @@
+/* GENERAL */
+
+:root {
+    --light: #aaa;
+    --dark: #000;
+    --link: #eee;
+    --red: #ff4245;
+    --orange: #ff9230;
+    --yellow: #ffd600;
+    --green: #30d158;
+    --blue: #007AFF;
+    --purple: #db34f2;
+    --pink: #ff375f;
+    --brown: #b78a66;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+    background-color: var(--dark);
+    color: var(--light);
+    font-family: 'IBM Plex Mono', monospace;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+*::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 15vh;
+}
+
+section {
+    overflow: visible;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+a {
+    position: relative;
+    text-decoration: none;
+    color: var(--link);
+    background: none;
+    overflow: visible;
+}
+  
+  a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+  
+    background: linear-gradient(
+      to right,
+      var(--red),
+      var(--orange),
+      var(--yellow),
+      var(--green),
+      var(--blue),
+      var(--purple),
+      var(--pink),
+      var(--brown)
+    );
+  
+    border-radius: 15px;
+    opacity: 0.5;
+  
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+  
+  a.animate::after {
+    transform: scaleX(1);
+    transition-duration: 0.15s;
+  }
+  
+  a.exit::after {
+    transform-origin: right;
+    transform: scaleX(0);
+    transition-duration: 1.2s;
+  }
+
+/* MOUSE TRAIL */
+
+#trail {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    background: none;
+    pointer-events: none;
+}
+
+    #trail path {
+        fill: none;
+        stroke: var(--blue);
+        opacity: 0.5;
+        stroke-width: 3px;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+
+/* TABLE */
+
+.table {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2vw;
+    width: 95%;
+    margin-bottom: 15vh;
+    animation: fadeIn 1s cubic-bezier(0.075, 0.8, 0.15, 1);
+    background: none;
+    overflow: visible;
+}
+
+    .leftColumn, .rightColumn {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 0.5vh;
+        background: none;
+        overflow: visible;
+    }
+
+        .leftColumn p, .rightColumn p {
+            background: none;
+            overflow: visible;
+        }
+
+        .leftColumn {
+            align-items: flex-end;
+            animation: leftColumn 1s cubic-bezier(0.075, 0.8, 0.15, 1);
+        }
+
+        .rightColumn {
+            align-items: flex-start;
+            gap: 1.5vh;
+            animation: rightColumn 1s cubic-bezier(0.075, 0.8, 0.15, 1);
+            overflow: visible;
+        }
+
+    @keyframes fadeIn {
+        0% {opacity: 0; filter: blur(15px); transform: scale(10);}
+        100% {opacity: 1; filter: blur(0px); transform: scale(1);}
+    }
+
+    @keyframes leftColumn {
+        0% {transform: translateX(-15%);}
+        100% {transform: translateX(0%);}
+    }
+
+    @keyframes rightColumn {
+        0% {transform: translateX(15%);}
+        100% {transform: translateX(0%);}
+    }
+
+/* RESPONSIVENESS */
+
+/* Touch devices */
+
+@media (hover: none) and (pointer: coarse) {
+    a::after {
+        display: none;
+    }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 599px) {
+   
+    * {
+        font-size: 0.9rem;
+    } 
+
+    body {
+        padding-top: 5vh;
+    }
+
+    .table {
+        grid-template-columns: 1fr !important;
+        gap: 1rem;
+        animation: none;
+        margin-bottom: 10%;
+    }
+
+    .leftColumn, .rightColumn {
+        align-items: center;
+    }
+
+    #trail {
+        display: none;
+    }
+}
+
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) and (max-width: 767px) {
+    
+    body {
+        padding-top: 5vh;
+    }
+
+    .table {
+        grid-template-columns: 1fr !important;
+        gap: 1rem;
+        margin-bottom: 10%;
+    }
+
+    .leftColumn, .rightColumn {
+        align-items: center;
+    }
+
+    #trail {
+        display: none;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    
+    .table {
+        grid-template-columns: 1fr !important;
+        gap: 1rem;
+        margin-bottom: 10%;
+    }
+
+    .leftColumn, .rightColumn {
+        align-items: center;
+    }
+
+    #trail {
+        display: none;
+    }
+}
+
+/* ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+}
