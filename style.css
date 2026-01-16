@@ -76,10 +76,8 @@ a {
       var(--pink),
       var(--brown)
     );
-  
     border-radius: 15px;
     opacity: 0.5;
-  
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
@@ -148,6 +146,7 @@ a {
             animation: leftColumn 1s cubic-bezier(0.075, 0.8, 0.15, 1);
         }
 
+
         .rightColumn {
             align-items: flex-start;
             gap: 1.5vh;
@@ -202,9 +201,29 @@ a {
         margin-bottom: 10%;
     }
 
-    .leftColumn, .rightColumn {
-        align-items: center;
+    .leftColumn {
+        align-items: start;
     }
+
+    .leftColumn p {
+        position: relative;
+    }
+
+    .leftColumn p::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 95vw;
+        height: 1.5px;
+        background: var(--light);
+        opacity: 0.3;
+    }
+
+    .rightColumn {
+        align-items: end;
+    }
+
 }
 
 
@@ -224,11 +243,39 @@ a {
     .leftColumn, .rightColumn {
         align-items: center;
     }
+
+
+    .leftColumn {
+        align-items: start;
+    }
+
+    .leftColumn p {
+        position: relative;
+    }
+
+    .leftColumn p::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 95vw;
+        height: 1.5px;
+        background: var(--light);
+        opacity: 0.3;
+    }
+
+    .rightColumn {
+        align-items: end;
+    }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-    
+        
+    body {
+        padding-top: 5vh;
+    }
+
     .table {
         grid-template-columns: 1fr !important;
         gap: 1rem;
@@ -237,6 +284,29 @@ a {
 
     .leftColumn, .rightColumn {
         align-items: center;
+    }
+
+
+    .leftColumn {
+        align-items: start;
+    }
+
+    .leftColumn p {
+        position: relative;
+    }
+
+    .leftColumn p::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 95vw;
+        height: 1.5px;
+        background: var(--light);
+    }
+
+    .rightColumn {
+        align-items: end;
     }
 }
 
