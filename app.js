@@ -1,50 +1,52 @@
+// LINKS ANIMATION
 const links = document.querySelectorAll("a");
 
 links.forEach(link => {
   let fullyIn = false;
+  let isHovered = false;
 
-  // Start fade-in
   link.addEventListener("mouseenter", () => {
+    if (isHovered) return;
+    isHovered = true;
+
     link.classList.remove("exit");
     link.classList.add("animate");
     fullyIn = false;
   });
 
-  // Detect when fade-in finished (transition on ::after bubbles to <a>)
   link.addEventListener("transitionend", (e) => {
     if (e.propertyName !== "transform") return;
 
-    if (link.classList.contains("animate")) {
-      fullyIn = true; // underline reached full width
+    if (isHovered && link.classList.contains("animate")) {
+      fullyIn = true;
     }
 
-    // cleanup after exit finishes
-    if (link.classList.contains("exit") && !link.matches(":hover")) {
+    if (link.classList.contains("exit") && !isHovered) {
       link.classList.remove("exit");
       fullyIn = false;
     }
   });
 
-  // On leave: reverse only if not fully in yet
   link.addEventListener("mouseleave", () => {
+    isHovered = false;
+
     if (!fullyIn) {
-      // reverse smoothly from current progress
-      link.classList.remove("animate"); // goes back to scaleX(0) with origin left
+      link.classList.remove("animate");
       return;
     }
 
-    // fully in: do the "disappear to the right"
     link.classList.remove("animate");
     link.classList.add("exit");
     fullyIn = false;
   });
 });
 
+// EMAIL LINK
 const user = "robin";
 const domain = "r15b.in";
 
-const link = document.getElementById("emailLink");
-link.href = `mailto:${user}@${domain}`;
+const emailLink = document.getElementById("emailLink");
+emailLink.href = `mailto:${user}@${domain}`;
 
 // MOUSE TRAIL
 
@@ -76,7 +78,7 @@ link.href = `mailto:${user}@${domain}`;
   }
   
   const anim = () => {
-    // starting point
+
     let px = mouse.x
     let py = mouse.y
   
