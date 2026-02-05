@@ -113,3 +113,15 @@ emailLink.href = `mailto:${user}@${domain}`;
   
   anim()
   resize()
+
+// HORIZONTAL SCROLLBAR
+
+const thumb = document.getElementById("scrollbarProgress");
+function update() {
+  const max = Math.max(1, document.documentElement.scrollHeight - innerHeight);
+  const pct = (scrollY / max) * 100;
+  thumb.style.width = pct + "%";
+}
+addEventListener("scroll", update, { passive: true });
+addEventListener("resize", update);
+update();
