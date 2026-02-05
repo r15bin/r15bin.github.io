@@ -34,8 +34,8 @@
 }
 
 #scrollbarTrack {
-    position: fixed; top: 0; left: 0; right: 0;
-    height: 5px;
+    position: fixed; top: 0; left: -10px; right: -10px;
+    height: 3px;
     background: none;
     z-index: 9999;
 }
@@ -45,10 +45,11 @@
     width: 0%;
     background: linear-gradient(
         to right,
-        var(--link),
-        var(--light));
-    opacity: 0.5;
+        var(--light),
+        var(--link));
     box-shadow: 0 0 15px 0 rgba(255, 255, 255, 0.5);
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
 }
 
 body {
