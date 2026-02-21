@@ -46,7 +46,7 @@ const user = "robin";
 const domain = "r15b.in";
 
 const emailLink = document.getElementById("emailLink");
-emailLink.href = `mailto:${user}@${domain}`;
+if (emailLink) emailLink.href = `mailto:${user}@${domain}`;
 
 // MOUSE TRAIL
 
@@ -125,3 +125,142 @@ function update() {
 addEventListener("scroll", update, { passive: true });
 addEventListener("resize", update);
 update();
+
+// PHOTOGRAPHY
+
+const grid = document.getElementById("photoGrid");
+if (grid) {
+  const shuffle = (arr) => {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  };
+  fetch("photography/photography.json")
+    .then((res) => res.json())
+    .then((filenames) => shuffle(filenames))
+    .then((filenames) => {
+      filenames.forEach((filename) => {
+        const img = document.createElement("img");
+        img.src = `photography/${filename}`;
+        img.alt = filename.replace(/\.[^/.]+$/, "");
+        img.loading = "lazy";
+        img.draggable = false;
+        grid.appendChild(img);
+      });
+      grid.addEventListener("contextmenu", (e) => e.preventDefault());
+    })
+    .catch((err) => console.error("Failed to load photography list:", err));
+}
+
+// OVERSCROLL
+
+const overscrollGrid = document.getElementById("photoGrid");
+if (overscrollGrid) {
+  const RESISTANCE = 0.1;
+  const THRESHOLD = 100;
+  const BOTTOM_THRESHOLD = 0;
+  const PULL_RESISTANCE = 0.5;
+  const MAX_PULL = 80;
+  let overflowAccum = 0;
+  const overscrollProgress = document.getElementById("overscrollProgress");
+  const overscrollTrack = document.getElementById("overscrollTrack");
+  const main = document.querySelector("main");
+
+  function atBottom() {
+    return document.documentElement.scrollHeight - window.innerHeight - window.scrollY <= BOTTOM_THRESHOLD;
+  }
+
+  function setOverscrollBar() {
+    const visible = overflowAccum > 0;
+    if (overscrollTrack) {
+      overscrollTrack.style.opacity = visible ? "1" : "0";
+      overscrollTrack.style.pointerEvents = visible ? "auto" : "none";
+    }
+    if (overscrollProgress) {
+      const pct = Math.min(100, (overflowAccum / THRESHOLD) * 100) / 100;
+      overscrollProgress.style.transform = `scaleX(${pct}) scaleY(${pct})`;
+    }
+    if (main) {
+      const pullY = Math.min(overflowAccum * PULL_RESISTANCE, MAX_PULL);
+      main.style.transform = pullY > 0 ? `translateY(-${pullY}px)` : "";
+    }
+  }
+
+  const DECAY = 0.9;
+  let isScrolling = false;
+  function overscrollTick() {
+    if (overflowAccum > 0 && atBottom() && !isScrolling) {
+      overflowAccum = Math.max(0, overflowAccum * DECAY);
+      setOverscrollBar();
+    }
+    requestAnimationFrame(overscrollTick);
+  }
+  requestAnimationFrame(overscrollTick);
+
+  function handleWheel(e) {
+    if (!atBottom()) {
+      overflowAccum = 0;
+      setOverscrollBar();
+      if (main) main.style.transform = "";
+      isScrolling = false;
+      return;
+    }
+    isScrolling = true;
+    if (e.deltaY > 0) {
+      e.preventDefault();
+      overflowAccum += e.deltaY * RESISTANCE;
+      setOverscrollBar();
+      if (overflowAccum >= THRESHOLD) {
+        window.location.href = "index.html";
+      }
+    } else {
+      overflowAccum = Math.max(0, overflowAccum + e.deltaY);
+      setOverscrollBar();
+    }
+    clearTimeout(handleWheel.timeout);
+    handleWheel.timeout = setTimeout(() => { isScrolling = false; }, 50);
+  }
+
+  document.addEventListener("wheel", handleWheel, { passive: false });
+
+  let touchStartY = 0;
+  document.addEventListener(
+    "touchstart",
+    (e) => {
+      touchStartY = e.touches[0].clientY;
+    },
+    { passive: true }
+  );
+  document.addEventListener(
+    "touchmove",
+    (e) => {
+      if (!atBottom()) {
+        overflowAccum = 0;
+        setOverscrollBar();
+        if (main) main.style.transform = "";
+        isScrolling = false;
+        return;
+      }
+      isScrolling = true;
+      const dy = touchStartY - e.touches[0].clientY;
+      if (dy > 0) {
+        overflowAccum += dy * RESISTANCE;
+        touchStartY = e.touches[0].clientY;
+        setOverscrollBar();
+        if (overflowAccum >= THRESHOLD) {
+          e.preventDefault();
+          window.location.href = "index.html";
+        }
+      } else {
+        overflowAccum = Math.max(0, overflowAccum + dy);
+        setOverscrollBar();
+      }
+      clearTimeout(handleWheel.timeout);
+      handleWheel.timeout = setTimeout(() => { isScrolling = false; }, 50);
+    },
+    { passive: true }
+  );
+}
