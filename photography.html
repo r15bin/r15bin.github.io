@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>r15bin</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=ibm-plex-sans:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet" />
+    <!-- FAVICONS -->
+    <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+    <link rel="manifest" href="favicons/site.webmanifest">
+</head>
+<body>
+
+    <main>
+        <div class="photo-grid" id="photoGrid"></div>
+    </main>
+
+    <div class="back">
+        <p>Keep scrolling to go back</p>
+    </div>
+
+
+<!-- MOUSE TRAIL -->
+
+    <svg id="trail" viewBox="0 0 400 400">
+        <path d="M 100 100 L 200 200 L 300 100" />
+    </svg>
+
+<!-- SCROLLBAR -->
+
+    <div id="scrollbarTrack">
+        <div id="scrollbarProgress"></div>
+    </div>
+
+<!-- OVERSCROLL BAR (bottom, grows from center when scrolling past end) -->
+
+    <div id="overscrollTrack">
+        <div id="overscrollProgress"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
