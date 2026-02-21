@@ -277,7 +277,7 @@ a {
 /* Mobile devices */
 
 @media only screen and (max-width: 991px) {
-    body {
+    main {
         padding-top: 5vh;
     }
 
