@@ -139,10 +139,23 @@ if (grid) {
     return a;
   };
   const INITIAL_VISIBLE = 6; // Eager-load first ~1–2 rows
+  const backText = document.querySelector(".back p");
+  if (backText) backText.style.display = "none";
   fetch("photography/photography.json")
     .then((res) => res.json())
     .then((filenames) => shuffle(filenames))
     .then((filenames) => {
+      const SHOW_AFTER = 10;
+      const targetCount = Math.min(SHOW_AFTER, filenames.length);
+      let loadedCount = 0;
+
+      const markLoaded = () => {
+        if (!backText) return;
+        loadedCount++;
+        if (loadedCount >= targetCount) {
+          backText.style.display = "";
+        }
+      };
       // Preload first images so browser starts fetching before DOM is ready
       filenames.slice(0, INITIAL_VISIBLE).forEach((filename) => {
         const link = document.createElement("link");
@@ -161,6 +174,8 @@ if (grid) {
         img.draggable = false;
         img.width = 280;
         img.height = 280;
+        img.addEventListener("load", markLoaded, { once: true });
+        img.addEventListener("error", markLoaded, { once: true });
         grid.appendChild(img);
       });
       grid.addEventListener("contextmenu", (e) => e.preventDefault());
@@ -200,15 +215,18 @@ if (overscrollGrid) {
   }
 
   function setOverscrollBar() {
+    const { THRESHOLD } = getConfig();
+    const pct = Math.min(1, overflowAccum / THRESHOLD);
+
     const visible = overflowAccum > 0;
     if (overscrollTrack) {
       overscrollTrack.style.opacity = visible ? "1" : "0";
-      overscrollTrack.style.pointerEvents = visible ? "auto" : "none";
     }
     if (overscrollProgress) {
-      const { THRESHOLD } = getConfig();
-      const pct = Math.min(100, (overflowAccum / THRESHOLD) * 100) / 100;
-      overscrollProgress.style.transform = `scaleX(${pct}) scaleY(${pct})`;
+      overscrollProgress.style.transform = `scaleY(${pct})`;
+    }
+    if (overscrollGrid) {
+      overscrollGrid.style.opacity = `${1 - pct}`;
     }
     if (main) {
       const { PULL_RESISTANCE, MAX_PULL } = getConfig();
