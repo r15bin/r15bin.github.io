@@ -187,7 +187,7 @@ if (grid) {
 
 const overscrollGrid = document.getElementById("photoGrid");
 if (overscrollGrid) {
-  const BOTTOM_THRESHOLD = 0;
+  const BOTTOM_THRESHOLD = 15;
   const WHEEL_CONFIG = {
     RESISTANCE: 0.1,
     THRESHOLD: 100,
