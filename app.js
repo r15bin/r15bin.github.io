@@ -159,15 +159,28 @@ if (grid) {
 
 const overscrollGrid = document.getElementById("photoGrid");
 if (overscrollGrid) {
-  const RESISTANCE = 0.1;
-  const THRESHOLD = 100;
   const BOTTOM_THRESHOLD = 0;
-  const PULL_RESISTANCE = 0.5;
-  const MAX_PULL = 80;
+  const WHEEL_CONFIG = {
+    RESISTANCE: 0.1,
+    THRESHOLD: 100,
+    PULL_RESISTANCE: 0.5,
+    MAX_PULL: 80,
+  };
+  const TOUCH_CONFIG = {
+    RESISTANCE: 0.25,
+    THRESHOLD: 80,
+    PULL_RESISTANCE: 0.7,
+    MAX_PULL: 100,
+  };
+  let inputMode = "wheel";
   let overflowAccum = 0;
   const overscrollProgress = document.getElementById("overscrollProgress");
   const overscrollTrack = document.getElementById("overscrollTrack");
   const main = document.querySelector("main");
+
+  function getConfig() {
+    return inputMode === "touch" ? TOUCH_CONFIG : WHEEL_CONFIG;
+  }
 
   function atBottom() {
     return document.documentElement.scrollHeight - window.innerHeight - window.scrollY <= BOTTOM_THRESHOLD;
@@ -180,10 +193,12 @@ if (overscrollGrid) {
       overscrollTrack.style.pointerEvents = visible ? "auto" : "none";
     }
     if (overscrollProgress) {
+      const { THRESHOLD } = getConfig();
       const pct = Math.min(100, (overflowAccum / THRESHOLD) * 100) / 100;
       overscrollProgress.style.transform = `scaleX(${pct}) scaleY(${pct})`;
     }
     if (main) {
+      const { PULL_RESISTANCE, MAX_PULL } = getConfig();
       const pullY = Math.min(overflowAccum * PULL_RESISTANCE, MAX_PULL);
       main.style.transform = pullY > 0 ? `translateY(-${pullY}px)` : "";
     }
@@ -201,6 +216,7 @@ if (overscrollGrid) {
   requestAnimationFrame(overscrollTick);
 
   function handleWheel(e) {
+    inputMode = "wheel";
     if (!atBottom()) {
       overflowAccum = 0;
       setOverscrollBar();
@@ -210,6 +226,7 @@ if (overscrollGrid) {
     }
     isScrolling = true;
     if (e.deltaY > 0) {
+      const { RESISTANCE, THRESHOLD } = getConfig();
       e.preventDefault();
       overflowAccum += e.deltaY * RESISTANCE;
       setOverscrollBar();
@@ -230,6 +247,7 @@ if (overscrollGrid) {
   document.addEventListener(
     "touchstart",
     (e) => {
+      inputMode = "touch";
       touchStartY = e.touches[0].clientY;
     },
     { passive: true }
@@ -245,6 +263,7 @@ if (overscrollGrid) {
         return;
       }
       isScrolling = true;
+      const { RESISTANCE, THRESHOLD } = getConfig();
       const dy = touchStartY - e.touches[0].clientY;
       if (dy > 0) {
         overflowAccum += dy * RESISTANCE;
@@ -261,6 +280,6 @@ if (overscrollGrid) {
       clearTimeout(handleWheel.timeout);
       handleWheel.timeout = setTimeout(() => { isScrolling = false; }, 50);
     },
-    { passive: true }
+    { passive: false }
   );
 }
