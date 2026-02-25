@@ -138,16 +138,29 @@ if (grid) {
     }
     return a;
   };
+  const INITIAL_VISIBLE = 6; // Eager-load first ~1–2 rows
   fetch("photography/photography.json")
     .then((res) => res.json())
     .then((filenames) => shuffle(filenames))
     .then((filenames) => {
-      filenames.forEach((filename) => {
+      // Preload first images so browser starts fetching before DOM is ready
+      filenames.slice(0, INITIAL_VISIBLE).forEach((filename) => {
+        const link = document.createElement("link");
+        link.rel = "preload";
+        link.as = "image";
+        link.href = `photography/${filename}`;
+        document.head.appendChild(link);
+      });
+      filenames.forEach((filename, i) => {
         const img = document.createElement("img");
         img.src = `photography/${filename}`;
         img.alt = filename.replace(/\.[^/.]+$/, "");
-        img.loading = "lazy";
+        img.loading = i < INITIAL_VISIBLE ? "eager" : "lazy";
+        if (i < INITIAL_VISIBLE) img.fetchPriority = "high";
+        img.decoding = "async";
         img.draggable = false;
+        img.width = 280;
+        img.height = 280;
         grid.appendChild(img);
       });
       grid.addEventListener("contextmenu", (e) => e.preventDefault());
@@ -167,10 +180,10 @@ if (overscrollGrid) {
     MAX_PULL: 80,
   };
   const TOUCH_CONFIG = {
-    RESISTANCE: 0.25,
-    THRESHOLD: 80,
-    PULL_RESISTANCE: 0.7,
-    MAX_PULL: 100,
+    RESISTANCE: 0.2,
+    THRESHOLD: 110,
+    PULL_RESISTANCE: 0.92,
+    MAX_PULL: 130,
   };
   let inputMode = "wheel";
   let overflowAccum = 0;
