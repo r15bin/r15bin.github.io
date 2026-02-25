@@ -47,7 +47,7 @@
         to right,
         var(--light),
         var(--link));
-    box-shadow: 0 0 15px 0 rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 15px 0 var(--link);
     border-bottom-right-radius: 15px;
     border-top-right-radius: 15px;
 }
@@ -57,26 +57,28 @@
     bottom: 0;
     left: -10px;
     right: -10px;
-    height: 10px;
+    height: 100vh;
     background: none;
     z-index: 9999;
     display: flex;
     justify-content: center;
     align-items: center;
     transition: 0.15s ease-out;
+    pointer-events: none;
 }
 
 #overscrollProgress {
     height: 100%;
     width: 100%;
-    box-shadow: 0 0 15px 0 var(--blue);
-    background: var(--blue);
-    box-shadow: 0 0 15px 0 var(--blue);
+    background: linear-gradient(to bottom,
+        transparent,
+        var(--dark));
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     transform: scaleX(0) scaleY(0);
     transform-origin: center bottom;
     transition: transform 0.03s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    pointer-events: none;
 }
 
 body {
@@ -88,6 +90,7 @@ body {
 main {
     padding-top: 15vh;
     transition: transform 0.08s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    background: none;
 }
 
 section {
@@ -171,6 +174,7 @@ a {
     margin: 0 auto 15vh;
     padding: 0;
     animation: fadeIn 1s cubic-bezier(0.075, 0.8, 0.15, 1);
+    background: none;
 }
 
 .photo-grid img {
@@ -194,16 +198,21 @@ a {
     justify-content: center;
     height: 5vh;
     width: 100vw;
+    padding-bottom: 5vh;
 }
 
-    .back p {
+    .back p, .back a {
         background: none;
         color: var(--light);
-        font-size: 0.8rem;
+        font-size: 0.7rem;
         font-weight: 100;
         text-align: center;
+        text-transform: uppercase;
     }
 
+    .back a::after {
+        display: none;
+    }
 /* TABLE */
 
 .table {
