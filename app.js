@@ -156,8 +156,8 @@ if (grid) {
           backText.style.display = "";
         }
       };
-      // Preload first images so browser starts fetching before DOM is ready
-      filenames.slice(0, INITIAL_VISIBLE).forEach((filename) => {
+      // Preload all images so browser starts fetching everything as early as possible
+      filenames.forEach((filename) => {
         const link = document.createElement("link");
         link.rel = "preload";
         link.as = "image";
