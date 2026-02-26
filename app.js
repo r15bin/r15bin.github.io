@@ -206,6 +206,14 @@ if (overscrollGrid) {
   const overscrollTrack = document.getElementById("overscrollTrack");
   const main = document.querySelector("main");
 
+  function goBackToIndex() {
+    if (window.history.length > 1) {
+      window.history.back();
+    } else {
+      window.location.href = "index.html";
+    }
+  }
+
   function getConfig() {
     return inputMode === "touch" ? TOUCH_CONFIG : WHEEL_CONFIG;
   }
@@ -262,7 +270,7 @@ if (overscrollGrid) {
       overflowAccum += e.deltaY * RESISTANCE;
       setOverscrollBar();
       if (overflowAccum >= THRESHOLD) {
-        window.location.href = "index.html";
+        goBackToIndex();
       }
     } else {
       overflowAccum = Math.max(0, overflowAccum + e.deltaY);
@@ -302,7 +310,7 @@ if (overscrollGrid) {
         setOverscrollBar();
         if (overflowAccum >= THRESHOLD) {
           e.preventDefault();
-          window.location.href = "index.html";
+          goBackToIndex();
         }
       } else {
         overflowAccum = Math.max(0, overflowAccum + dy);
