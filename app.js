@@ -41,6 +41,42 @@ links.forEach(link => {
   });
 });
 
+// REPLAY INDEX ANIMATIONS WHEN RETURNING FROM PHOTOGRAPHY
+
+function shouldReplayIndexAnimationsFromPhotography() {
+  try {
+    if (!document.referrer) return false;
+    const refUrl = new URL(document.referrer);
+    const path = refUrl.pathname.replace(/\/+$/, "");
+    return path.endsWith("/photography.html") || path.endsWith("photography.html");
+  } catch {
+    return false;
+  }
+}
+
+function replayIndexAnimations() {
+  const animated = document.querySelectorAll(
+    ".table, .leftColumn, .rightColumn, .leftColumn p, .rightColumn p"
+  );
+  if (!animated.length) return;
+
+  animated.forEach((el) => {
+    el.style.animation = "none";
+  });
+  // force reflow
+  void document.body.offsetWidth;
+  animated.forEach((el) => {
+    el.style.animation = "";
+  });
+}
+
+window.addEventListener("pageshow", () => {
+  const isIndex = !!document.getElementById("about");
+  if (!isIndex) return;
+  if (!shouldReplayIndexAnimationsFromPhotography()) return;
+  replayIndexAnimations();
+});
+
 // EMAIL LINK
 const user = "robin";
 const domain = "r15b.in";
