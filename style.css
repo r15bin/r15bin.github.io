@@ -270,7 +270,7 @@ a {
         }
 
     @keyframes fadeIn {
-        0% {opacity: 0; filter: blur(15px); transform: scale(10);}
+        0% {opacity: 0; filter: blur(50px); transform: scale(10);}
         100% {opacity: 1; filter: blur(0px); transform: scale(1);}
     }
 
