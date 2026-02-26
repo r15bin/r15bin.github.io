@@ -195,8 +195,8 @@ if (overscrollGrid) {
     MAX_PULL: 80,
   };
   const TOUCH_CONFIG = {
-    RESISTANCE: 0.2,
-    THRESHOLD: 110,
+    RESISTANCE: 0.24,
+    THRESHOLD: 90,
     PULL_RESISTANCE: 0.92,
     MAX_PULL: 130,
   };
@@ -207,12 +207,24 @@ if (overscrollGrid) {
   const main = document.querySelector("main");
 
   function goBackToIndex() {
-    if (window.history.length > 1) {
+    let cameFromIndex = false;
+    try {
+      if (document.referrer) {
+        const refUrl = new URL(document.referrer);
+        const path = refUrl.pathname.replace(/\/+$/, "");
+        cameFromIndex = path === "" || path === "/" || path.endsWith("/index.html");
+      }
+    } catch (e) {
+      cameFromIndex = false;
+    }
+
+    if (cameFromIndex && window.history.length > 1) {
       window.history.back();
     } else {
       window.location.href = "index.html";
     }
   }
+  window.goBackToIndex = goBackToIndex;
 
   function getConfig() {
     return inputMode === "touch" ? TOUCH_CONFIG : WHEEL_CONFIG;
