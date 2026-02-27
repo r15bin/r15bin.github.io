@@ -47,8 +47,9 @@ function shouldReplayIndexAnimationsFromPhotography() {
   try {
     if (!document.referrer) return false;
     const refUrl = new URL(document.referrer);
-    const path = refUrl.pathname.replace(/\/+$/, "");
-    return path.endsWith("/photography.html") || path.endsWith("photography.html");
+    const path = refUrl.pathname.toLowerCase();
+    // Support /photography, /photography.html, /some/path/photography/ etc.
+    return path.includes("photography");
   } catch {
     return false;
   }
