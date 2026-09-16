@@ -12,6 +12,7 @@
     --purple: #db34f2;
     --pink: #ff375f;
     --brown: #b78a66;
+    --silver: #151515;
 }
 
 * {
@@ -50,35 +51,7 @@
     box-shadow: 0 0 15px 0 var(--link);
     border-bottom-right-radius: 15px;
     border-top-right-radius: 15px;
-}
-
-#overscrollTrack {
-    position: fixed;
-    bottom: 0;
-    left: -10px;
-    right: -10px;
-    height: 100vh;
-    background: none;
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: 0.15s ease-out;
-    pointer-events: none;
-}
-
-#overscrollProgress {
-    height: 100%;
-    width: 100%;
-    background: linear-gradient(to bottom,
-        transparent,
-        var(--dark));
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    transform: scaleX(0) scaleY(0);
-    transform-origin: center bottom;
-    transition: transform 0.03s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    pointer-events: none;
+    opacity: 0.5;
 }
 
 body {
@@ -88,18 +61,19 @@ body {
 }
 
 main {
-    padding-top: 15vh;
     transition: transform 0.08s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     background: none;
 }
 
 section {
     overflow: visible;
-    width: 100vw;
+    width: 100dvw;
+    height: 100dvh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
+    padding-top: 15dvh;
 }
 
 a {
@@ -177,7 +151,7 @@ a {
     grid-template-columns: 1fr 1fr;
     gap: 5vw;
     width: 95%;
-    margin-bottom: 15vh;
+    margin-bottom: 10dvh;
     animation: fadeIn 1s cubic-bezier(0.075, 0.8, 0.15, 1);
     background: none;
     overflow: visible;
@@ -187,7 +161,7 @@ a {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
-        gap: 0.5vh;
+        gap: 1.5vh;
         background: none;
         overflow: visible;
     }
@@ -243,8 +217,8 @@ a {
 /* Mobile devices */
 
 @media only screen and (max-width: 991px) {
-    main {
-        padding-top: 5vh;
+    section {
+        padding-top: 5dvh;
     }
 
     .table {
