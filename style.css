@@ -402,9 +402,7 @@ section .section-label {
     }
 
     #widget-searching {
-        background: linear-gradient(45deg, var(--green-3), var(--pink-3));
-        animation: var(--gradient-animation);
-        background-size: 400% 400%; 
+        background: none;
     }
 
 
