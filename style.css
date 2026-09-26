@@ -286,7 +286,7 @@ section .section-label {
         }
 
 .widget {
-    height: 25dvh;
+    height: 25vh;
     background: none;
     border: var(--border);
     border-radius: var(--border-radius);
