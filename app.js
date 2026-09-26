@@ -1,52 +1,38 @@
-// LINKS ANIMATION
-const links = document.querySelectorAll("a");
-
-links.forEach(link => {
-  let fullyIn = false;
-  let isHovered = false;
-
-  link.addEventListener("mouseenter", () => {
-    if (isHovered) return;
-    isHovered = true;
-
-    link.classList.remove("exit");
-    link.classList.add("animate");
-    fullyIn = false;
-  });
-
-  link.addEventListener("transitionend", (e) => {
-    if (e.propertyName !== "transform") return;
-
-    if (isHovered && link.classList.contains("animate")) {
-      fullyIn = true;
-    }
-
-    if (link.classList.contains("exit") && !isHovered) {
-      link.classList.remove("exit");
-      fullyIn = false;
-    }
-  });
-
-  link.addEventListener("mouseleave", () => {
-    isHovered = false;
-
-    if (!fullyIn) {
-      link.classList.remove("animate");
-      return;
-    }
-
-    link.classList.remove("animate");
-    link.classList.add("exit");
-    fullyIn = false;
-  });
-});
-
 // EMAIL LINK
-const user = "robin";
+const user = "hello";
 const domain = "r15b.in";
 
-const emailLink = document.getElementById("emailLink");
-if (emailLink) emailLink.href = `mailto:${user}@${domain}`;
+// Copy
+const emailLinkCopy = document.getElementById("email-link-copy");
+if (emailLinkCopy) {
+  // Lock the button's width so text swap doesn't cause layout shift
+  emailLinkCopy.style.display = "inline-block";
+  emailLinkCopy.style.width = `${emailLinkCopy.offsetWidth}px`;
+  emailLinkCopy.style.textAlign = "center";
+
+  emailLinkCopy.addEventListener("click", (e) => {
+    e.preventDefault();
+    const email = `${user}@${domain}`;
+    navigator.clipboard.writeText(email).then(() => {
+      const original = emailLinkCopy.textContent;
+      emailLinkCopy.textContent = "Copied";
+      setTimeout(() => {
+        emailLinkCopy.textContent = original;
+      }, 1500);
+    });
+  });
+}
+
+// Mailto
+const emailLinkSend = document.getElementById("email-link-send");
+if (emailLinkSend) {
+  emailLinkSend.addEventListener("click", (e) => {
+    e.preventDefault();
+    const email = `${user}@${domain}`;
+    window.location.href = `mailto:${email}`;
+  });
+}
+
 
 // MOUSE TRAIL
 
@@ -54,7 +40,7 @@ if (emailLink) emailLink.href = `mailto:${user}@${domain}`;
   const path = svg.querySelector('path')
   
   let points = []
-  let segments = 30 // trail length
+  let segments = 30 // TRAIL LENGTH
   let mouse = {
     x: 0,
     y: 0,
@@ -114,7 +100,7 @@ if (emailLink) emailLink.href = `mailto:${user}@${domain}`;
   anim()
   resize()
 
-// HORIZONTAL SCROLLBAR
+// SCROLLBAR
 
 const thumb = document.getElementById("scrollbarProgress");
 function update() {
@@ -125,3 +111,9 @@ function update() {
 addEventListener("scroll", update, { passive: true });
 addEventListener("resize", update);
 update();
+
+// IMG PROTECTION
+
+document.querySelectorAll('img').forEach(img => {
+    img.setAttribute('draggable', 'false');
+});
