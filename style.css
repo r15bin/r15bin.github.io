@@ -171,6 +171,10 @@ img {
     pointer-events: none;
 }
 
+.text-negative {
+    filter: invert(1);
+}
+
 a {
     text-decoration: none;
 }
